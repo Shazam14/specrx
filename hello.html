@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpecialistRX — Melbourne's AI-Powered Dental SpecialistRX Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE6D6;
+    --navy: #1B2A4A;
+    --navy-light: #2C3E6B;
+    --gold: #C8963E;
+    --gold-light: #E8B96A;
+    --text-body: #3D3D3D;
+    --text-muted: #6B6B6B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27,42,74,0.08);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-cta:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(27,42,74,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-content {
+    max-width: 680px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,150,62,0.12);
+    border: 1px solid rgba(200,150,62,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before { content: '✦'; font-size: 0.6rem; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+    line-height: 1.12;
+    color: var(--navy);
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 8px 32px rgba(27,42,74,0.2);
+  }
+
+  .btn-primary:hover { background: var(--navy-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(27,42,74,0.28); }
+
+  .btn-primary .arrow { transition: transform 0.3s ease; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  .hero-note {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .hero-note::before { content: '🔒'; font-size: 0.75rem; }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--navy);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .stat {
+    text-align: center;
+    color: var(--cream);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+  }
+
+  /* PAIN SECTION */
+  .pain {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 60px;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .pain-card {
+    background: white;
+    border: 1px solid rgba(27,42,74,0.08);
+    border-radius: 20px;
+    padding: 36px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .pain-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(27,42,74,0.1); }
+  .pain-card:hover::before { opacity: 1; }
+
+  .pain-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pain-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .pain-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* SOLUTION */
+  .solution {
+    background: var(--navy);
+    padding: 100px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution::before {
+    content: 'Rx';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    right: -40px; top: -40px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .solution-inner { max-width: 1100px; margin: 0 auto; }
+
+  .solution .section-tag { color: var(--gold-light); }
+
+  .solution h2 { color: var(--cream); margin-bottom: 60px; }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .solution-item {
+    padding: 44px 36px;
+    background: rgba(27,42,74,0.8);
+    transition: background 0.3s ease;
+  }
+
+  .solution-item:hover { background: rgba(44,62,107,0.9); }
+
+  .solution-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: rgba(200,150,62,0.25);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .solution-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .solution-item p {
+    font-size: 0.88rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+  }
+
+  /* SOCIAL PROOF */
+  .proof {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .proof h2 { margin-bottom: 16px; }
+
+  .proof-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 60px;
+    font-weight: 300;
+  }
+
+  .proof-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    text-align: left;
+  }
+
+  .proof-card {
+    background: white;
+    border: 1px solid rgba(27,42,74,0.08);
+    border-radius: 20px;
+    padding: 36px;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .proof-card blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--navy);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .proof-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .proof-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+  }
+
+  .proof-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--navy);
+    display: block;
+  }
+
+  .proof-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--cream-dark);
+    padding: 100px 60px;
+    text-align: center;
+    border-top: 1px solid rgba(27,42,74,0.08);
+  }
+
+  .cta-section h2 { margin-bottom: 16px; }
+
+  .cta-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .cta-group {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 30px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer .logo { font-size: 1.2rem; }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.4);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero, .pain, .proof, .cta-section { padding: 100px 24px 60px; }
+    .stats-strip { padding: 40px 24px; gap: 40px; }
+    .solution { padding: 80px 24px; }
+    footer { padding: 24px; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SpecialistRX<span>RX</span></div>
+  <a href="#book" class="nav-cta">Book a Free Call →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Melbourne's AI-Powered Dental SpecialistRX</div>
+    <h1>Your Melbourne clinic deserves a<br><em>full appointment</em><br>book. Every week.</h1>
+    <p class="hero-sub">SpecialistRX helps Melbourne dental clinics attract more local patients, fill empty slots, and grow revenue — using AI-driven marketing built specifically for Australian healthcare.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">
+        Book a Free Strategy Call
+        <span class="arrow">→</span>
+      </a>
+      <span class="hero-note">No commitment. 30 minutes. Real results.</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-num">40+</span>
+    <span class="stat-label">New patients / month</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">$180k+</span>
+    <span class="stat-label">Avg. annual revenue added</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">14</span>
+    <span class="stat-label">Days to first results</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">3×</span>
+    <span class="stat-label">Average ROI</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="pain fade-in">
+  <span class="section-tag">The Problem</span>
+  <h2>Sound familiar?</h2>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="pain-icon">📅</span>
+      <h3>Empty appointment slots</h3>
+      <p>Your clinic has the capacity but the chairs are empty. In Melbourne's competitive market, every unfilled slot is lost revenue — often $300–$800 per appointment.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">📍</span>
+      <h3>Invisible on local search</h3>
+      <p>Patients in Fitzroy, Richmond, and Southbank are searching "dentist near me" right now — and finding your competitors instead of you.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">💸</span>
+      <h3>Wasted ad spend</h3>
+      <p>Running Google or Meta ads with no clear strategy? Most Melbourne clinics burn thousands monthly on campaigns that don't convert into actual bookings.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">🔄</span>
+      <h3>No patient reactivation</h3>
+      <p>You have hundreds of lapsed patients in your database right now. A simple AI-powered reactivation campaign could fill your next 4 weeks — automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution fade-in">
+  <div class="solution-inner">
+    <span class="section-tag">The SpecialistRX Method</span>
+    <h2>AI-powered SpecialistRX,<br>built for Australian dental.</h2>
+    <div class="solution-grid">
+      <div class="solution-item">
+        <span class="solution-num">01</span>
+        <h3>Dominate Local Search</h3>
+        <p>We optimize your Google presence so patients in your area find you first — before your competitors.</p>
+      </div>
+      <div class="solution-item">
+        <span class="solution-num">02</span>
+        <h3>AI Patient Targeting</h3>
+        <p>Our AI identifies high-intent patients in your area and serves them the right message at the right time.</p>
+      </div>
+      <div class="solution-item">
+        <span class="solution-num">03</span>
+        <h3>Fill Empty Slots</h3>
+        <p>Automated follow-ups, reminders, and reactivation campaigns keep your schedule full, every week.</p>
+      </div>
+      <div class="solution-item">
+        <span class="solution-num">04</span>
+        <h3>Grow Revenue</h3>
+        <p>Track every dollar back to results. Real reporting, real SpecialistRX — no fluff, no vanity metrics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof fade-in">
+  <span class="section-tag">Early Results</span>
+  <h2>Clinics are already growing.</h2>
+  <p class="proof-sub">We're just getting started — here's what early partners are experiencing.</p>
+  <div class="proof-cards">
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"We went from 60% to 95% appointment capacity in 6 weeks. Our Richmond clinic hasn't had empty slots since."</blockquote>
+      <div class="proof-author">
+        <div class="proof-avatar">DT</div>
+        <div>
+          <span class="proof-name">Dr. Thompson</span>
+          <span class="proof-title">Richmond Family Dental, Melbourne</span>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"SpecialistRX found patients we didn't know existed in Fitzroy. Revenue up 40% in one quarter — proper results."</blockquote>
+      <div class="proof-author">
+        <div class="proof-avatar">SC</div>
+        <div>
+          <span class="proof-name">Dr. Sarah Chen</span>
+          <span class="proof-title">Fitzroy Dental Studio, Melbourne</span>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Finally, marketing I can actually measure. I know exactly what I'm getting for every dollar. Worth every cent."</blockquote>
+      <div class="proof-author">
+        <div class="proof-avatar">JM</div>
+        <div>
+          <span class="proof-name">Dr. James Murray</span>
+          <span class="proof-title">Southbank Dental, Melbourne CBD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section fade-in" id="book">
+  <span class="section-tag">Get Started</span>
+  <h2>Ready to fill your Melbourne clinic?</h2>
+  <p class="cta-sub">Book a free 30-minute strategy call. We'll analyse your clinic's local SpecialistRX potential and show you exactly what's possible in your suburb.</p>
+  <div class="cta-group">
+    <a href="https://calendly.com" target="_blank" class="btn-primary" style="font-size:1.05rem; padding: 18px 44px;">
+      Book My Free Strategy Call →
+    </a>
+    <span class="hero-note">No sales pressure. Just a real conversation about your clinic's SpecialistRX in Melbourne.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="color: var(--cream);">SpecialistRX<span>RX</span></div>
+  <p>© 2025 SpecialistRX. Melbourne, Australia. Helping dental clinics grow smarter. | ABN: XX XXX XXX XXX</p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
