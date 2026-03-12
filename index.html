@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpecialistRX — Melbourne's AI-Powered Dental SpecialistRX Agency</title>
+<title>QuadGrowth — Victoria's AI-Powered Healthcare Growth Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -18,7 +18,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -152,7 +151,6 @@
   }
 
   .btn-primary:hover { background: var(--navy-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(27,42,74,0.28); }
-
   .btn-primary .arrow { transition: transform 0.3s ease; }
   .btn-primary:hover .arrow { transform: translateX(4px); }
 
@@ -164,35 +162,84 @@
 
   .hero-note::before { content: '🔒'; font-size: 0.75rem; }
 
-  /* STATS STRIP */
-  .stats-strip {
+  /* HOW IT WORKS STRIP */
+  .how-strip {
     background: var(--navy);
     padding: 40px 60px;
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 0;
     flex-wrap: wrap;
     animation: fadeUp 1s ease 0.3s both;
+    position: relative;
   }
 
-  .stat {
+  .how-item {
     text-align: center;
     color: var(--cream);
+    padding: 0 48px;
+    position: relative;
   }
 
-  .stat-num {
+  .how-item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.2rem;
+    opacity: 0.5;
+  }
+
+  .how-num {
     font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
+    font-size: 2rem;
     color: var(--gold-light);
     display: block;
     line-height: 1;
     margin-bottom: 6px;
   }
 
-  .stat-label {
+  .how-label {
     font-size: 0.82rem;
     opacity: 0.7;
     letter-spacing: 0.5px;
+  }
+
+  /* NICHES */
+  .niches {
+    padding: 60px 60px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .niches-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .niche-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .niche-tag {
+    background: white;
+    border: 1px solid rgba(27,42,74,0.12);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--navy);
+    font-weight: 500;
   }
 
   /* PAIN SECTION */
@@ -250,11 +297,7 @@
   .pain-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(27,42,74,0.1); }
   .pain-card:hover::before { opacity: 1; }
 
-  .pain-icon {
-    font-size: 2rem;
-    margin-bottom: 16px;
-    display: block;
-  }
+  .pain-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
 
   .pain-card h3 {
     font-family: 'Playfair Display', serif;
@@ -263,11 +306,7 @@
     margin-bottom: 10px;
   }
 
-  .pain-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
+  .pain-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
   /* SOLUTION */
   .solution {
@@ -278,20 +317,18 @@
   }
 
   .solution::before {
-    content: 'Rx';
+    content: '4';
     font-family: 'Playfair Display', serif;
-    font-size: 18rem;
+    font-size: 24rem;
     color: rgba(255,255,255,0.03);
     position: absolute;
-    right: -40px; top: -40px;
+    right: -20px; top: -60px;
     line-height: 1;
     pointer-events: none;
   }
 
   .solution-inner { max-width: 1100px; margin: 0 auto; }
-
   .solution .section-tag { color: var(--gold-light); }
-
   .solution h2 { color: var(--cream); margin-bottom: 60px; }
 
   .solution-grid {
@@ -327,91 +364,98 @@
     margin-bottom: 10px;
   }
 
-  .solution-item p {
-    font-size: 0.88rem;
-    color: rgba(245,240,232,0.6);
-    line-height: 1.7;
-  }
+  .solution-item p { font-size: 0.88rem; color: rgba(245,240,232,0.6); line-height: 1.7; }
 
-  /* SOCIAL PROOF */
-  .proof {
+  /* PROCESS — replaces fake testimonials */
+  .process {
     padding: 100px 60px;
     max-width: 1100px;
     margin: 0 auto;
-    text-align: center;
   }
 
-  .proof h2 { margin-bottom: 16px; }
-
-  .proof-sub {
-    color: var(--text-muted);
-    font-size: 1rem;
-    margin-bottom: 60px;
-    font-weight: 300;
-  }
-
-  .proof-cards {
+  .process-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
-    text-align: left;
+    margin-top: 0;
   }
 
-  .proof-card {
+  .process-card {
     background: white;
     border: 1px solid rgba(27,42,74,0.08);
     border-radius: 20px;
     padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .stars {
-    color: var(--gold);
-    font-size: 1rem;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-  }
-
-  .proof-card blockquote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--navy);
-    line-height: 1.65;
-    margin-bottom: 20px;
-  }
-
-  .proof-author {
-    display: flex; align-items: center; gap: 12px;
-  }
-
-  .proof-avatar {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  .process-icon {
+    width: 48px; height: 48px;
+    background: rgba(200,150,62,0.1);
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--cream);
+    font-size: 1.4rem;
+  }
+
+  .process-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-  }
-
-  .proof-name {
-    font-size: 0.88rem;
-    font-weight: 500;
+    font-size: 1.15rem;
     color: var(--navy);
-    display: block;
   }
 
-  .proof-title {
+  .process-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+  .process-metric {
     font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(27,42,74,0.06);
+  }
+
+  /* COVERAGE */
+  .coverage {
+    background: var(--cream-dark);
+    padding: 80px 60px;
+    text-align: center;
+    border-top: 1px solid rgba(27,42,74,0.06);
+    border-bottom: 1px solid rgba(27,42,74,0.06);
+  }
+
+  .coverage-inner { max-width: 900px; margin: 0 auto; }
+
+  .coverage h2 { margin-bottom: 16px; }
+
+  .coverage-sub {
     color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .suburb-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .suburb-tag {
+    background: white;
+    border: 1px solid rgba(27,42,74,0.1);
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--navy);
   }
 
   /* CTA */
   .cta-section {
-    background: var(--cream-dark);
     padding: 100px 60px;
     text-align: center;
-    border-top: 1px solid rgba(27,42,74,0.08);
   }
 
   .cta-section h2 { margin-bottom: 16px; }
@@ -421,6 +465,10 @@
     font-size: 1rem;
     margin-bottom: 40px;
     font-weight: 300;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
   }
 
   .cta-group {
@@ -440,10 +488,7 @@
 
   footer .logo { font-size: 1.2rem; }
 
-  footer p {
-    font-size: 0.8rem;
-    color: rgba(245,240,232,0.4);
-  }
+  footer p { font-size: 0.8rem; color: rgba(245,240,232,0.4); }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -457,16 +502,15 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
-    .hero, .pain, .proof, .cta-section { padding: 100px 24px 60px; }
-    .stats-strip { padding: 40px 24px; gap: 40px; }
+    .hero, .pain, .process, .coverage, .cta-section { padding: 100px 24px 60px; }
+    .niches { padding: 40px 24px 0; }
+    .how-strip { padding: 40px 24px; gap: 32px; }
+    .how-item:not(:last-child)::after { display: none; }
     .solution { padding: 80px 24px; }
     footer { padding: 24px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -477,43 +521,58 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">SpecialistRX<span>RX</span></div>
+  <div class="logo">Quad<span>Growth</span></div>
   <a href="#book" class="nav-cta">Book a Free Call →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">Melbourne's AI-Powered Dental SpecialistRX</div>
-    <h1>Your Melbourne clinic deserves a<br><em>full appointment</em><br>book. Every week.</h1>
-    <p class="hero-sub">SpecialistRX helps Melbourne dental clinics attract more local patients, fill empty slots, and grow revenue — using AI-driven marketing built specifically for Australian healthcare.</p>
+    <div class="hero-badge">Victoria's AI-Powered Healthcare Growth</div>
+    <h1>Your Victoria clinic deserves a<br><em>full appointment</em><br>book. Every week.</h1>
+    <p class="hero-sub">QuadGrowth helps healthcare clinics across Victoria attract more local patients, fill empty slots, and grow sustainably — using AI-driven marketing built specifically for Australian healthcare.</p>
     <div class="hero-actions">
       <a href="#book" class="btn-primary">
         Book a Free Strategy Call
         <span class="arrow">→</span>
       </a>
-      <span class="hero-note">No commitment. 30 minutes. Real results.</span>
+      <span class="hero-note">No commitment. 30 minutes. No obligation.</span>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat">
-    <span class="stat-num">40+</span>
-    <span class="stat-label">New patients / month</span>
+<!-- HOW IT WORKS STRIP -->
+<div class="how-strip">
+  <div class="how-item">
+    <span class="how-num">01</span>
+    <span class="how-label">Find your patients</span>
   </div>
-  <div class="stat">
-    <span class="stat-num">$180k+</span>
-    <span class="stat-label">Avg. annual revenue added</span>
+  <div class="how-item">
+    <span class="how-num">02</span>
+    <span class="how-label">Reach them first</span>
   </div>
-  <div class="stat">
-    <span class="stat-num">14</span>
-    <span class="stat-label">Days to first results</span>
+  <div class="how-item">
+    <span class="how-num">03</span>
+    <span class="how-label">Fill your schedule</span>
   </div>
-  <div class="stat">
-    <span class="stat-num">3×</span>
-    <span class="stat-label">Average ROI</span>
+  <div class="how-item">
+    <span class="how-num">04</span>
+    <span class="how-label">Track every result</span>
+  </div>
+</div>
+
+<!-- NICHES -->
+<div class="niches fade-in">
+  <span class="niches-label">We work with Victoria's healthcare practices including</span>
+  <div class="niche-tags">
+    <span class="niche-tag">🦷 Dental</span>
+    <span class="niche-tag">👁️ Optometry</span>
+    <span class="niche-tag">🦴 Physiotherapy</span>
+    <span class="niche-tag">🧠 Psychology</span>
+    <span class="niche-tag">💆 Allied Health</span>
+    <span class="niche-tag">🏥 General Practice</span>
+    <span class="niche-tag">💉 Chiropractic</span>
+    <span class="niche-tag">🦶 Podiatry</span>
   </div>
 </div>
 
@@ -525,22 +584,22 @@
     <div class="pain-card">
       <span class="pain-icon">📅</span>
       <h3>Empty appointment slots</h3>
-      <p>Your clinic has the capacity but the chairs are empty. In Melbourne's competitive market, every unfilled slot is lost revenue — often $300–$800 per appointment.</p>
+      <p>Your practice has the capacity but the chairs are empty. In Victoria's competitive market, every unfilled slot is revenue your practice will never recover.</p>
     </div>
     <div class="pain-card">
       <span class="pain-icon">📍</span>
       <h3>Invisible on local search</h3>
-      <p>Patients in Fitzroy, Richmond, and Southbank are searching "dentist near me" right now — and finding your competitors instead of you.</p>
+      <p>Patients across Melbourne, Geelong, Ballarat and regional Victoria are searching for your services right now — and finding your competitors instead of you.</p>
     </div>
     <div class="pain-card">
       <span class="pain-icon">💸</span>
       <h3>Wasted ad spend</h3>
-      <p>Running Google or Meta ads with no clear strategy? Most Melbourne clinics burn thousands monthly on campaigns that don't convert into actual bookings.</p>
+      <p>Running Google or Meta ads with no clear strategy? Most Victorian practices burn budget monthly on campaigns that generate clicks but don't convert into actual bookings.</p>
     </div>
     <div class="pain-card">
       <span class="pain-icon">🔄</span>
-      <h3>No patient reactivation</h3>
-      <p>You have hundreds of lapsed patients in your database right now. A simple AI-powered reactivation campaign could fill your next 4 weeks — automatically.</p>
+      <h3>Lapsed patient database</h3>
+      <p>You have hundreds of patients who haven't returned. An AI-powered reactivation campaign could fill your next few weeks — automatically and compliantly.</p>
     </div>
   </div>
 </section>
@@ -548,71 +607,82 @@
 <!-- SOLUTION -->
 <section class="solution fade-in">
   <div class="solution-inner">
-    <span class="section-tag">The SpecialistRX Method</span>
-    <h2>AI-powered SpecialistRX,<br>built for Australian dental.</h2>
+    <span class="section-tag">The QuadGrowth Method</span>
+    <h2>Four pillars of growth,<br>built for Australian healthcare.</h2>
     <div class="solution-grid">
       <div class="solution-item">
         <span class="solution-num">01</span>
         <h3>Dominate Local Search</h3>
-        <p>We optimize your Google presence so patients in your area find you first — before your competitors.</p>
+        <p>We optimise your Google presence so patients in your area find you first — before your competitors get the chance.</p>
       </div>
       <div class="solution-item">
         <span class="solution-num">02</span>
         <h3>AI Patient Targeting</h3>
-        <p>Our AI identifies high-intent patients in your area and serves them the right message at the right time.</p>
+        <p>Our AI identifies high-intent patients in your suburb and serves them the right message at the right time — compliantly.</p>
       </div>
       <div class="solution-item">
         <span class="solution-num">03</span>
         <h3>Fill Empty Slots</h3>
-        <p>Automated follow-ups, reminders, and reactivation campaigns keep your schedule full, every week.</p>
+        <p>Automated follow-ups and reactivation campaigns keep your schedule moving — week after week, without the manual effort.</p>
       </div>
       <div class="solution-item">
         <span class="solution-num">04</span>
-        <h3>Grow Revenue</h3>
-        <p>Track every dollar back to results. Real reporting, real SpecialistRX — no fluff, no vanity metrics.</p>
+        <h3>Track Every Dollar</h3>
+        <p>Real reporting, real accountability. You'll always know exactly what's working and what your investment is returning.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section class="proof fade-in">
-  <span class="section-tag">Early Results</span>
-  <h2>Clinics are already growing.</h2>
-  <p class="proof-sub">We're just getting started — here's what early partners are experiencing.</p>
-  <div class="proof-cards">
-    <div class="proof-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"We went from 60% to 95% appointment capacity in 6 weeks. Our Richmond clinic hasn't had empty slots since."</blockquote>
-      <div class="proof-author">
-        <div class="proof-avatar">DT</div>
-        <div>
-          <span class="proof-name">Dr. Thompson</span>
-          <span class="proof-title">Richmond Family Dental, Melbourne</span>
-        </div>
-      </div>
+<!-- PROCESS (replaces fake testimonials) -->
+<section class="process fade-in">
+  <span class="section-tag">What to Expect</span>
+  <h2>A clear process.<br>From day one.</h2>
+  <div class="process-grid">
+    <div class="process-card">
+      <div class="process-icon">🔍</div>
+      <h3>Free Growth Audit</h3>
+      <p>We analyse your clinic's current online presence, local search visibility, and identify the specific gaps costing you bookings in your area.</p>
+      <span class="process-metric">Delivered in your first call — no cost, no obligation</span>
     </div>
-    <div class="proof-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"SpecialistRX found patients we didn't know existed in Fitzroy. Revenue up 40% in one quarter — proper results."</blockquote>
-      <div class="proof-author">
-        <div class="proof-avatar">SC</div>
-        <div>
-          <span class="proof-name">Dr. Sarah Chen</span>
-          <span class="proof-title">Fitzroy Dental Studio, Melbourne</span>
-        </div>
-      </div>
+    <div class="process-card">
+      <div class="process-icon">🗺️</div>
+      <h3>Custom Growth Plan</h3>
+      <p>Every Victorian suburb is different. We build a strategy specific to your location, your practice type, and your patient demographic — not a generic template.</p>
+      <span class="process-metric">Tailored to your suburb and practice type</span>
     </div>
-    <div class="proof-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Finally, marketing I can actually measure. I know exactly what I'm getting for every dollar. Worth every cent."</blockquote>
-      <div class="proof-author">
-        <div class="proof-avatar">JM</div>
-        <div>
-          <span class="proof-name">Dr. James Murray</span>
-          <span class="proof-title">Southbank Dental, Melbourne CBD</span>
-        </div>
-      </div>
+    <div class="process-card">
+      <div class="process-icon">🤖</div>
+      <h3>AI-Powered Execution</h3>
+      <p>Our automation handles the repetitive work — outreach, follow-ups, reporting — so your team focuses on what they do best: caring for patients.</p>
+      <span class="process-metric">Campaigns live within days of onboarding</span>
+    </div>
+  </div>
+</section>
+
+<!-- VICTORIA COVERAGE -->
+<section class="coverage fade-in">
+  <div class="coverage-inner">
+    <span class="section-tag">Our Coverage</span>
+    <h2>Serving healthcare practices<br>across all of Victoria.</h2>
+    <p class="coverage-sub">From Melbourne's inner suburbs to regional Victoria — we understand the local market dynamics that matter for your practice's growth.</p>
+    <div class="suburb-grid">
+      <span class="suburb-tag">Melbourne CBD</span>
+      <span class="suburb-tag">Fitzroy</span>
+      <span class="suburb-tag">Richmond</span>
+      <span class="suburb-tag">Southbank</span>
+      <span class="suburb-tag">Toorak</span>
+      <span class="suburb-tag">St Kilda</span>
+      <span class="suburb-tag">Box Hill</span>
+      <span class="suburb-tag">Dandenong</span>
+      <span class="suburb-tag">Frankston</span>
+      <span class="suburb-tag">Ringwood</span>
+      <span class="suburb-tag">Footscray</span>
+      <span class="suburb-tag">Werribee</span>
+      <span class="suburb-tag">Geelong</span>
+      <span class="suburb-tag">Ballarat</span>
+      <span class="suburb-tag">Bendigo</span>
+      <span class="suburb-tag">+ Regional Victoria</span>
     </div>
   </div>
 </section>
@@ -620,31 +690,28 @@
 <!-- CTA -->
 <section class="cta-section fade-in" id="book">
   <span class="section-tag">Get Started</span>
-  <h2>Ready to fill your Melbourne clinic?</h2>
-  <p class="cta-sub">Book a free 30-minute strategy call. We'll analyse your clinic's local SpecialistRX potential and show you exactly what's possible in your suburb.</p>
+  <h2>Ready to grow your<br>Victorian practice?</h2>
+  <p class="cta-sub">Book a free 30-minute strategy call. We'll review your clinic's local visibility and walk you through exactly what's possible in your suburb — no pressure, just clarity.</p>
   <div class="cta-group">
     <a href="https://calendly.com" target="_blank" class="btn-primary" style="font-size:1.05rem; padding: 18px 44px;">
       Book My Free Strategy Call →
     </a>
-    <span class="hero-note">No sales pressure. Just a real conversation about your clinic's SpecialistRX in Melbourne.</span>
+    <span class="hero-note">No sales pressure. Just a real conversation about your practice's growth.</span>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="logo" style="color: var(--cream);">SpecialistRX<span>RX</span></div>
-  <p>© 2025 SpecialistRX. Melbourne, Australia. Helping dental clinics grow smarter. | ABN: XX XXX XXX XXX</p>
+  <div class="logo" style="color: var(--cream);">Quad<span>Growth</span></div>
+  <p>© 2026 QuadGrowth. Melbourne, Victoria, Australia. AI-powered growth for healthcare practices. | ABN: 53 792 887 825</p>
 </footer>
 
 <script>
-  // Scroll fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add('visible');
-      }
+      if (el.isIntersecting) el.target.classList.add('visible');
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
