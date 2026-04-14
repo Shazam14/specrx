@@ -188,6 +188,9 @@
 <!-- Sitemap hint for crawlers -->
 <!-- Sitemap: https://quadgrowth.com.au/sitemap.xml -->
 
+<!-- reCAPTCHA v2 -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <style>
   :root {
     --cream: #F5F0E8;
@@ -838,18 +841,34 @@
 
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  /* RESPONSIVE */
+  /* RESPONSIVE — tablet */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
-    .hero, .pain, .process, .faq, .coverage, .cta-section { padding: 100px 24px 60px; }
+    .hero, .pain, .process, .faq, .cta-section { padding: 100px 24px 60px; }
+    .coverage { padding: 60px 24px; }
     .niches { padding: 40px 24px 0; }
-    .how-strip { padding: 40px 24px; gap: 32px; }
+    .how-strip { padding: 40px 24px; gap: 16px; }
+    .how-item { padding: 0 20px; }
     .how-item:not(:last-child)::after { display: none; }
     .solution { padding: 80px 24px; }
     footer { padding: 32px 24px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
     .footer-links { gap: 16px; }
     .lead-form-grid { grid-template-columns: 1fr; }
+    h2 { margin-bottom: 40px; }
+  }
+
+  /* RESPONSIVE — mobile */
+  @media (max-width: 480px) {
+    .how-item { padding: 0 12px; }
+    .how-strip { gap: 8px; justify-content: center; }
+    .solution-item { padding: 32px 20px; }
+    .pain-card, .process-card { padding: 28px 20px; }
+    /* reCAPTCHA widget is 304px wide — scale it down if needed */
+    .g-recaptcha {
+      transform-origin: left center;
+      transform: scale(calc(min(1, (100vw - 80px) / 304)));
+    }
   }
 </style>
 
@@ -1122,8 +1141,10 @@
       </div>
       <input id="form-started-at" name="form_started_at" type="hidden" value="">
 
+      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-top:14px;"></div>
+
       <button type="submit" class="btn-primary" style="margin-top:14px; width:100%;">Send Enquiry</button>
-      <p class="form-note">Basic anti-spam is enabled.</p>
+      <p class="form-note">Protected by reCAPTCHA.</p>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
     <span class="hero-note">No sales pressure. Just a real conversation about your practice's growth.</span>
@@ -1210,6 +1231,13 @@
         formStatus.textContent = 'Please answer the quick check correctly.';
         formStatus.style.color = '#9b4d2d';
         humanCheck.focus();
+        return;
+      }
+
+      const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+      if (!recaptchaResponse) {
+        formStatus.textContent = 'Please complete the reCAPTCHA check.';
+        formStatus.style.color = '#9b4d2d';
         return;
       }
 
