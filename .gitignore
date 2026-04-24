@@ -1,6 +1,14 @@
 node_modules
 dist
+.next
+out
+next-env.d.ts
 .DS_Store
 *.local
 .env
 .env.*.local
+.files
+.vercel
+tsconfig.tsbuildinfo
+files(1)/
+recaptcha-guide.png
