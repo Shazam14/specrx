@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import { Faq } from "./_components/faq";
+import { InsightsSection } from "./_components/insights-section";
 import { LeadForm } from "./_components/lead-form";
 
 export const metadata: Metadata = {
@@ -342,6 +343,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <InsightsSection />
 
         <section className="cta-section fade-in" id="book" aria-labelledby="cta-heading">
           <span className="section-tag">Get Started</span>
