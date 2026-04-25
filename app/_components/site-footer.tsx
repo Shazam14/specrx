@@ -9,7 +9,8 @@ export function SiteFooter() {
         </div>
       </div>
       <nav className="footer-links" aria-label="Footer navigation">
-        <a href="mailto:hello@quadgrowth.com.au">hello@quadgrowth.com.au</a>
+        <a href="mailto:ecuadra@quadgrowth.com.au">ecuadra@quadgrowth.com.au</a>
+        <a href="tel:+61415689225">+61 415 689 225</a>
         <Link href="/privacy">Privacy Policy</Link>
         <Link href="/services">Services</Link>
         <Link href="/blog">Blog</Link>

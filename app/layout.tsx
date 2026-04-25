@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { BotIdClient } from "botid/client";
 import { FadeInObserver } from "./_components/fade-in-observer";
 import { SiteNav } from "./_components/site-nav";
 import { SiteFooter } from "./_components/site-footer";
@@ -100,8 +101,8 @@ const siteJsonLd = {
       url: "https://quadgrowth.com.au",
       logo: "https://quadgrowth.com.au/logo.png",
       image: "https://quadgrowth.com.au/og-image.jpg",
-      telephone: "+61-3-XXXX-XXXX",
-      email: "hello@quadgrowth.com.au",
+      telephone: "+61415689225",
+      email: "ecuadra@quadgrowth.com.au",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Melbourne",
@@ -152,6 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU" className={`${playfair.variable} ${dmSans.variable}`}>
       <body>
+        <BotIdClient protect={[{ path: "/api/lead", method: "POST" }]} />
         <GoogleTagManager gtmId="GTM-NCDH3CCC" />
         <Script
           id="apollo-form-enrichment"
